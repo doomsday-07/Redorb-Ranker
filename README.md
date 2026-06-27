@@ -54,13 +54,27 @@ python3 validate_submission.py submission.csv
 
 Scoring is purely rule-based with no ML model, no network calls, and no GPU — fully compliant with competition compute constraints.
 
+## Docker Sandbox
+
+Build and run the ranker in an isolated container (simulates Stage 3 reproduction environment):
+
+```bash
+docker build -t redrob-ranker .
+docker run --rm redrob-ranker
+```
+
+The container runs on a 100-candidate sample. The output is written to `/app/submission.csv` inside the container.
+
 ## Project Structure
 
 ```
-├── main.go               # Ranker implementation
-├── go.mod                # Go module definition
-├── SlEePeR_cElL.csv      # Final submission output
-├── SlEePeR_cElL.xlsx     # Excel copy of submission
-├── .gitignore            # Excludes compiled binary
-└── README.md             # This file
+├── main.go                    # Ranker implementation
+├── go.mod                     # Go module definition
+├── Dockerfile                 # Multi-stage Docker build for sandbox reproduction
+├── sample_100.jsonl           # 100-line sample for Docker sandbox demo
+├── SlEePeR_cElL.csv           # Final submission output
+├── SlEePeR_cElL.xlsx          # Excel copy of submission
+├── submission_metadata.yaml   # Submission metadata for portal upload
+├── .gitignore                 # Excludes compiled binary
+└── README.md                  # This file
 ```

@@ -1,0 +1,53 @@
+# Redrob Hackathon — Submission Metadata
+team_name: "SlEePeR_cElL"
+
+primary_contact:
+  name: "Om Prasad Nayak"
+  email: "omprasadnayak7@gmail.com"
+  phone: "8018662555"
+
+team_members: [] # TODO: add team members
+
+github_repo: "https://github.com/doomsday-07/Redorb-Ranker"
+
+sandbox_link: "docker build -t redrob-ranker . && docker run --rm redrob-ranker"
+
+reproduce_command: "go build -o ranker . && ./ranker candidates.jsonl submission.csv"
+
+compute:
+  platform: "MacBook Air M5"
+  cpu_cores: 10
+  ram_gb: 24
+  os: "macOS 26.5.1"
+  uses_gpu_for_inference: false
+  has_network_during_ranking: false
+  pre_computation_required: false
+  pre_computation_time_minutes: 0
+
+ai_tools_used:
+  - "OpenCode (DeepSeek V4 Flash)"
+
+ai_usage_summary: |
+  The entire ranking system — from data structures and scoring logic to CSV output,
+  Docker sandbox, and presentation content — was built iteratively through OpenCode
+  using DeepSeek V4 Flash. I described the problem and constraints; OpenCode generated,
+  reviewed, and refined the Go code in real time. Each scoring component, honeypot check,
+  and tie-breaking rule was implemented through conversational prompting rather than
+  manual coding. The codebase is fully my own work — every decision was reviewed and
+  approved — but the implementation velocity was powered entirely by agentic AI assistance.
+
+methodology_summary: |
+  Rule-based ranker in Go scoring 100K candidates against a Senior AI Engineer
+  JD across 7 weighted components: Technical Skill Match (35%), Career
+  Trajectory & Title (20%), Keyword Stuffing Detection (10%), Experience Fit
+  (10%), Behavioral Signals (15%), Education (5%), and Location (5%).
+  A honeypot multiplier (7 checks) catches inconsistent/fraudulent profiles.
+  All reasoning is rule-generated per candidate. Zero external dependencies.
+  Runtime ~1 minute on CPU.
+
+declarations:
+  read_submission_spec: true
+  code_is_original_work: true
+  no_collusion: true
+  honeypot_check_done: true
+  reproduction_tested: true
