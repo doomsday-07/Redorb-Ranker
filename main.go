@@ -677,7 +677,10 @@ func scoreBehavioralSignals(c *Candidate) (float64, string) {
 	if s.LastActiveDate != "" {
 		lastActive, err := time.Parse("2006-01-02", s.LastActiveDate)
 		if err == nil {
-			daysSince := time.Since(lastActive).Hours() / 24
+			// Use fixed reference date for deterministic reproduction.
+			// Swap to time.Since() for production use.
+			referenceDate := time.Date(2026, 6, 27, 0, 0, 0, 0, time.UTC)
+			daysSince := referenceDate.Sub(lastActive).Hours() / 24
 			if daysSince <= 30 {
 				score += 0.10
 			} else if daysSince <= 90 {
